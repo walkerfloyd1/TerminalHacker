@@ -23,11 +23,6 @@ public class Hacker : MonoBehaviour
     }
     void OnUserInput (string input)
     {
-        print(input);
-    }
-        // Update is called once per frame
-        void Update()
-    {
-        
+        print(input == "1");
     }
 }
