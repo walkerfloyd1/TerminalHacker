@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Hacker : MonoBehaviour
 {
+    // Game configuration data
+
+    string[] level1Passwords = {"avatar", "aladdin", "hook", "frozen", "rambo"};
+    string[] level2Passwords = { "push", "crash", "roma", "casablanca", "whiplash"};
+    string[] level3Passwords = { "primer", "brick", "gummo", "eraserhead", "cronos" };
+
     // Start is called before the first frame update
     int level;
     enum Screen { MainMenu, Password, Win };
@@ -13,6 +19,7 @@ public class Hacker : MonoBehaviour
 
     void Start()
     {
+        print(level1Passwords[0]);
         ShowMainMenu();
     }
 
@@ -54,19 +61,19 @@ public class Hacker : MonoBehaviour
         else if (input == "1")
         {
             level = 1;
-            password = "a";
+            password = level1Passwords[2];
             StartGame();
         }
         else if (input == "2")
         {
             level = 2;
-            password = "b";
+            password = level2Passwords[2];
             StartGame();
         }
         else if (input == "3")
         {
             level = 3;
-            password = "c";
+            password = level3Passwords[2];
             StartGame();
         }
         else
