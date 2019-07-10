@@ -2,8 +2,9 @@
 
 public class Hacker : MonoBehaviour
 {
-    // Game configuration data
 
+    // Game configuration data
+    const string menuHint = "Type Menu at any time to go back to the menu";
     string[] level1Passwords = {"avatar", "aladdin", "hook", "frozen", "rambo"};
     string[] level2Passwords = { "push", "crash", "roma", "casablanca", "whiplash"};
     string[] level3Passwords = { "primer", "brick", "gummo", "eraserhead", "cronos" };
@@ -53,16 +54,17 @@ public class Hacker : MonoBehaviour
         if (isValidLevelNumber)
         {
             level = int.Parse(input);
-            StartGame();
+            AskForPassword();
         }
 
         else
         {
             Terminal.WriteLine("Please choose a valid level");
+            Terminal.WriteLine(menuHint);
         }
     }
 
-    void StartGame()
+    void AskForPassword()
     {
         print(level1Passwords.Length);
         print(level2Passwords.Length);
@@ -70,10 +72,18 @@ public class Hacker : MonoBehaviour
 
         currentScreen = Screen.Password;
         Terminal.ClearScreen();
-        switch(level)
+        SetRandomPassword();
+        Terminal.WriteLine("Enter your password, hint: " + password.Anagram());
+        Terminal.WriteLine(menuHint);
+
+    }
+
+    void SetRandomPassword()
+    {
+        switch (level)
         {
             case 1:
-                
+
                 password = level1Passwords[Random.Range(0, level1Passwords.Length)];
                 print(password);
                 break;
@@ -89,7 +99,6 @@ public class Hacker : MonoBehaviour
                 Debug.LogError("Invalid Level Number");
                 break;
         }
-        Terminal.WriteLine("Please enter your password");
     }
 
     void CheckPassword(string input)
@@ -100,7 +109,7 @@ public class Hacker : MonoBehaviour
         }
         else
         {
-            Terminal.WriteLine("Wrong Password!");
+            AskForPassword();
         }
     }
 
@@ -109,6 +118,7 @@ public class Hacker : MonoBehaviour
         currentScreen = Screen.Win;
         Terminal.ClearScreen();
         ShowLevelReward();
+        
     }
 
     void ShowLevelReward()
@@ -117,12 +127,19 @@ public class Hacker : MonoBehaviour
         {
             case 1:
                 Terminal.WriteLine("Grab Some Popcorn!");
+                Terminal.WriteLine(menuHint);
                 break;
             case 2:
                 Terminal.WriteLine("Grab Some Awards!");
+                Terminal.WriteLine(menuHint);
                 break;
             case 3:
                 Terminal.WriteLine("Grab Some Artisanal Beer!");
+                Terminal.WriteLine(menuHint);
+                break;
+            default:
+                Debug.LogError("Invalid Level Reached");
+                Terminal.WriteLine(menuHint);
                 break;
         }
         
