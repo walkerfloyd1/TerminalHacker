@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,9 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("3 - Indie Films (hard)");
         Terminal.WriteLine("Enter your selection:");
     }
+
+    int level;
+
     void OnUserInput (string input)
     {
         if (input == "menu")
@@ -30,9 +34,25 @@ public class Hacker : MonoBehaviour
         {
             Terminal.WriteLine("Please make a selection, Mr. Bond");
         }
+        else if (input == "1")
+        {
+            level = 1;
+            StartGame();
+        }
+        else if (input == "2")
+        {
+            level = 2;
+            StartGame();
+        }
         else
         {
             Terminal.WriteLine("Please choose a valid level");
         }
+    
+}
+
+    void StartGame()
+    {
+        Terminal.WriteLine("You have chosen level " + level);
     }
 }
